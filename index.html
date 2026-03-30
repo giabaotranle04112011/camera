@@ -1170,15 +1170,21 @@ window.onload = function() {
     </div>
 </footer>
 
-<!-- NÂNG CẤP: REAL-TIME AI STATISTICS WIDGET -->
-<div class="fixed bottom-8 left-8 bg-gradient-to-br from-emerald-900/90 to-teal-900/90 backdrop-blur-xl rounded-3xl p-6 border border-emerald-500/50 shadow-2xl max-w-sm z-[1000] glass">
+<!-- NÂNG CẤP: REAL-TIME AI STATISTICS WIDGET - CÓ THỂ ĐÓNG/MỞ -->
+<div id="ai-stats-widget" class="fixed bottom-8 left-8 bg-gradient-to-br from-emerald-900/90 to-teal-900/90 backdrop-blur-xl rounded-3xl p-6 border border-emerald-500/50 shadow-2xl max-w-sm z-[1000] glass transition-all duration-300">
     <div class="flex items-center justify-between mb-4">
         <h4 class="font-semibold text-emerald-300 flex items-center gap-2">
             <i class="fas fa-microchip text-emerald-400"></i> AI REALTIME STATS
         </h4>
-        <span class="text-[10px] bg-emerald-500 text-black px-2 py-0.5 rounded-full font-bold">LIVE</span>
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] bg-emerald-500 text-black px-2 py-0.5 rounded-full font-bold">LIVE</span>
+            <button onclick="toggleStatsWidget()" class="w-6 h-6 flex items-center justify-center hover:bg-emerald-500/30 rounded-lg transition-colors">
+                <i id="stats-toggle-icon" class="fas fa-chevron-down text-emerald-400 text-xs"></i>
+            </button>
+        </div>
     </div>
-    <div class="space-y-2 text-xs text-gray-200">
+    
+    <div id="stats-content" class="space-y-2 text-xs text-gray-200">
         <div class="flex justify-between items-center">
             <span>GPU Usage:</span>
             <div class="w-20 h-2 bg-gray-700 rounded-full overflow-hidden">
@@ -1203,6 +1209,24 @@ window.onload = function() {
         </div>
     </div>
 </div>
+
+<script>
+function toggleStatsWidget() {
+    const widget = document.getElementById('ai-stats-widget');
+    const content = document.getElementById('stats-content');
+    const icon = document.getElementById('stats-toggle-icon');
+    
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+    } else {
+        content.style.display = 'none';
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+    }
+}
+</script>
 
 <script>
 // NÂNG CẤP: Real-time AI Statistics
